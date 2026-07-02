@@ -7,8 +7,9 @@
 // loops --> for, while, do while
 // Strings -->
 // Array -->  length, slice, splice,
-// Objects -->
+// Objects --> methods (skipped, baad me pdhana hai)
 // function --> normal function, arrow function, callback function
 // promises
 // Async / await
 // DOM
+// project --> 
