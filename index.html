@@ -9,13 +9,59 @@
     
 
     <script>
-         function abc(){
-        console.log("not good");
+    //      function abc(){
+    //     console.log("not good");
 
-            }
+    //         }
 
-    // console.log(abc) // print
-    abc()
+    // // console.log(abc) // print
+    // abc()
+
+    // var a = 10;
+    // console.log(window)  // window is global object in js
+
+    // console.log(a)
+    // console.log(window.a)
+
+    // Note --> any variable decleraed using var adds itself in window object( that is known as global object) and variable inside global object are known as global variable that is why var is known as global variab
+
+
+//     function abc(){
+//     console.log(this)
+// }
+
+// let xyz=()=>{
+//     console.log(this)
+// }
+
+// abc()
+// xyz()
+
+
+let obj = {
+    name:"one",
+    age:10,
+    isPaid:true,
+    languages:['hindi','english'],
+    data:{city:'lucknow', houseNo:123},
+    x:()=>{
+        console.log(this)
+    },
+
+    y:function(){
+        console.log(this)
+    }
+}
+
+// console.log(obj.data.houseNo)
+obj.x();  // there is no binding of this keyword in arrow function. it always refers to global object
+obj.y(); //in normal function this keyword referes to parent object
+
+
+
+function abcd(){
+        console.log(this)
+}
     </script>
 </body>
 </html>

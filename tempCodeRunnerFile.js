@@ -1,1 +1,1 @@
-xyz()
+nsole.log("ghar waps aa gye ")

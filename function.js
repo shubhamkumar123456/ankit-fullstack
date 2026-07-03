@@ -163,3 +163,13 @@
 // b()
 
 
+
+// difference b/w arrow and normal funcvtion -->
+// 1) syntax diff
+// 2) difference of this keyword 
+// 3)
+
+// global variable  and global object
+
+
+
