@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ul{
+                background-color: red;
+        } */
+         #demo{
+            color: aqua !important;
+         }
+    </style>
+</head>
+<body>
+    <h1 id="demo" style="color: red;">THis is heading tag</h1>
+
+
+    <label for="">Male</label>
+    <input type="radio" name="abc">
+    <label for="">Female</label>
+    <input type="radio" name="abc">
+    <ul class="ulList">
+        <li>mango</li>
+        <li>apple</li>
+        <li>kiwi</li>
+        <li>oranges</li>
+    </ul>
+    <ul class="ulList">
+        <li>mango</li>
+        <li>apple</li>
+        <li>kiwi</li>
+        <li>oranges</li>
+    </ul>
+    <ul class="ulList">
+        <li>mango</li>
+        <li>apple</li>
+        <li>kiwi</li>
+        <li>oranges</li>
+    </ul>
+    <ul class="ulList">
+        <li>mango</li>
+        <li>apple</li>
+        <li>kiwi</li>
+        <li>oranges</li>
+    </ul>
+    <ul class="ulList">
+        <li>mango</li>
+        <li>apple</li>
+        <li>kiwi</li>
+        <li>oranges</li>
+    </ul>
+
+
+    <script>
+        // How to get an element in javascript --> 
+        // 1) document.getElementById()  //tag
+        // 2) document.getElementByClassName() //[]
+        // 3) document.getElementByTagName() // []
+        // 4) document.getElementByName()   // []
+        
+        // 5) document.querySelector()
+        // 6) document.querySelectorAll()
+
+        // example 1 -->document.getElementById()
+        // let x = document.getElementById('demo') //<h1> <h1>
+        // console.log(x)
+        // x.style.backgroundColor = 'green'
+        // x.style.color = 'white'
+
+        // exmple 2 --> document.getElementByClassName() --> output is in array
+
+
+        // let x = document.getElementsByClassName('ulList'); // [ul]
+        // console.log(x) // [ul]
+        // console.log(x[0]) //tag
+        // x[0].style.backgroundColor = "green"
+
+
+        // let x = document.getElementsByClassName('ulList')//
+        // console.log(x) // [ul , ul , ul , ul , ul]
+        // // x[0].style.backgroundColor = "green"
+        // // x[1].style.backgroundColor = "green"
+        // // x[2].style.backgroundColor = "green"
+        // // x[3].style.backgroundColor = "green"
+        // // x[4].style.backgroundColor = "green"
+
+        // for(let i=0; i<x.length; i++){
+        //     // console.log(x)
+        //     // console.log(x[i])
+        //     x[i].style.backgroundColor = "green"
+        // }
+        
+
+// Write inside any Tag using Javascript  --> .innerHTML , innerText, textContent
+
+            let x = document.getElementById('demo') // <h1 id="demo" style="color: red;">THis is heading tag</h1>
+            console.log(x);
+
+            let text = x.innerHTML; // THis is heading tag
+            let newText = text + ' hello how are you'
+            console.log(text)
+            console.log(newText)
+            // x.innerHTML = newText
+            // x.textContent = newText
+            // x.innerText = newText
+
+            // x.innerHTML = `<i> ${newText} <i>` //it will work
+            // x.innerText = `<i> ${newText} <i>`
+
+
+    </script>
+</body>
+</html>
