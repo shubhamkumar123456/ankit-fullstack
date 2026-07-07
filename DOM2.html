@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #demo{
+            color: chocolate;
+            background-color:black ;
+        }
+
+        .container{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="one">Hello this is heading tag</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+
+    <div onclick="changeColor()" onmouseenter="one()"  onmouseout="two()" class="container">
+
+    </div>
+
+    <script>
+        // getAttribute , setAttribute
+        // let x = document.querySelector('h1')
+        // console.log(x);  //<h1 class="one">Hello this is heading tag</h1>
+
+        // x.setAttribute('id', 'demo')
+        // console.log(x.getAttribute('title'))
+
+
+
+        // important --> events --> action performed by user and listen by browser;
+        // event example --> onclick, onmouseHover, onMouseOut , mouseMove 
+        // inline event, external event
+
+        // inline event -->
+
+        let x = document.querySelector('div');
+        console.log(x)  // <div>  <div>
+        
+        function changeColor(){
+            // console.log("hello")
+            //logic div color change
+            x.style.backgroundColor = "black"
+        }
+
+        function one(){
+            x.style.backgroundColor = "orange"
+        }
+
+        function two(){
+             x.style.backgroundColor = "brown"
+        }
+
+
+
+    // example of external Event -->  document.addEventListener();
+
+    let tag = document.querySelector('.one');
+    console.log(tag) // <h1>  <h1>
+
+        // tag.addEventListener('eventName', cb function)
+        tag.addEventListener('click',()=>{
+            tag.style.backgroundColor = "yellow"
+            tag.style.color = "black"
+        })
+
+
+
+
+    </script>
+</body>
+</html>

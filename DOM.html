@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+
     <h1 id="demo" style="color: red;">THis is heading tag</h1>
 
 
@@ -21,6 +22,7 @@
     <input type="radio" name="abc">
     <label for="">Female</label>
     <input type="radio" name="abc">
+   
     <ul class="ulList">
         <li>mango</li>
         <li>apple</li>
@@ -51,6 +53,7 @@
         <li>kiwi</li>
         <li>oranges</li>
     </ul>
+
 
 
     <script>
@@ -60,7 +63,7 @@
         // 3) document.getElementByTagName() // []
         // 4) document.getElementByName()   // []
         
-        // 5) document.querySelector()
+        // 5) document.querySelector() --> always give you single element
         // 6) document.querySelectorAll()
 
         // example 1 -->document.getElementById()
@@ -95,13 +98,13 @@
 
 // Write inside any Tag using Javascript  --> .innerHTML , innerText, textContent
 
-            let x = document.getElementById('demo') // <h1 id="demo" style="color: red;">THis is heading tag</h1>
-            console.log(x);
+            // let x = document.getElementById('demo') // <h1 id="demo" style="color: red;">THis is heading tag</h1>
+            // console.log(x);
 
-            let text = x.innerHTML; // THis is heading tag
-            let newText = text + ' hello how are you'
-            console.log(text)
-            console.log(newText)
+            // let text = x.innerHTML; // THis is heading tag
+            // let newText = text + ' hello how are you'
+            // console.log(text)
+            // console.log(newText)
             // x.innerHTML = newText
             // x.textContent = newText
             // x.innerText = newText
@@ -110,6 +113,48 @@
             // x.innerText = `<i> ${newText} <i>`
 
 
+    // example 4 --> getElementByTagName -->
+
+                // let x = document.getElementsByTagName('ul');
+                // console.log(x)
+                // x[0].style.backgroundColor = "red"
+
+    // example 5--> document.querySelector --> can select using class, id or tag
+
+    // let x = document.querySelector('ul')
+    // console.log(x)
+
+
+    // let x = document.querySelectorAll('ul')  // []
+    // console.log(x)
+    // console.log(x[4]) //ul
+    // console.log(x[4].children) //[li, li, li, li]
+    // console.log(x[4].children[2]) //li
+    // x[4].children[2].style.backgroundColor = "aqua"
+
+
+    // create a tag --> document.createElement(tagName)
+
+    let x = document.createElement('b');
+    console.log(x)  // <b>  <b>
+        x.innerHTML = "hello i am bold tag"
+
+
+    let bodyTag = document.querySelector('body') // 
+    console.log(bodyTag)
+
+    // before and after --> 
+    let ulTag = document.querySelector('ul');
+    console.log(ulTag)//
+
+    // bodyTag.prepend(x)
+    // ulTag.after(x)
+    // ulTag.before(x)
+
+
+//  append method  -->  can insert a tag inside another tag as a last child
+//  prepend method  -->  can insert a tag inside another tag as a first child
+ // bodyTag.append(x)
     </script>
 </body>
 </html>

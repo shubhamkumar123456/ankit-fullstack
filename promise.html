@@ -40,6 +40,47 @@
     // x.then((ans)=>ans.json()).then((ans)=>console.log(ans))
 
 
+
+
+//     one --> 
+//     two --> 3s
+//     four --> 1s
+//     five --> 
+
+let x = new Promise((resolve, reject) => {
+    resolve("one")
+})
+x.then((ans)=>console.log(ans))  //one
+
+.then(()=>{
+    return new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve("TWO")
+            },3000)
+    })
+    .then((ans)=>console.log(ans))
+})
+
+.then(()=>{
+    return new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve("four")
+            },1000)
+    })
+    .then((ans)=>console.log(ans))
+})
+.then(()=>console.log("five"))
+// console.log("five")
+
+
+
+
+
+
+
+
+    
+
     
     </script>
 </body>

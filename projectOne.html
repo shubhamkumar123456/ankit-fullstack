@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid red;
+            margin: auto;
+            gap: 20px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://images.panda.org/assets/images/pages/welcome/orangutan_1600x1000_279157.jpg" alt="">
+            <button onclick="handleClick()">Swap images</button>
+        <img src="https://uploads.sitepoint.com/wp-content/uploads/2016/03/1458289957powerful-images3.jpg" alt="">
+    </div>
+
+    <button>change color</button>
+
+    <script>
+        let AllImages = document.querySelectorAll('img');
+        console.log(AllImages)
+
+        let imageOne = AllImages[0]
+        let imageTwo = AllImages[1]
+        console.log(imageOne)  // <img src="hello">
+        console.log(imageTwo)       // <img src="bye bye">
+
+        let handleClick = ()=>{
+            // console.log("hello ")
+            // logic swap images
+            let z = imageOne.src  //hello
+            imageOne.src = imageTwo.src;
+            imageTwo.src =  z
+
+        }
+
+
+        let x = 10;  // img src
+        let y = 5; // img src
+
+        let z = x;
+        x = y;
+        y = z
+
+
+        console.log(x)  //5
+        console.log(y)  //10
+    </script>
+</body>
+</html>
