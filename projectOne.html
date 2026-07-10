@@ -28,7 +28,7 @@
         <img src="https://uploads.sitepoint.com/wp-content/uploads/2016/03/1458289957powerful-images3.jpg" alt="">
     </div>
 
-    <button>change color</button>
+    <button onclick="changeColor()">change color</button>
 
     <script>
         let AllImages = document.querySelectorAll('img');
@@ -59,6 +59,30 @@
 
         console.log(x)  //5
         console.log(y)  //10
+
+
+
+        let colors = ['white', 'orange' , 'aqua', 'crimson', 'goldenrod', 'black']; 
+        // length = 6
+
+        let body = document.querySelector('body');
+        console.log(body)
+
+        
+            let count = 0;
+
+            console.log(colors.length - 1)
+
+        function changeColor(){
+                count++;  //6
+
+                //  6 > 5
+                if(count > colors.length-1){
+                    count = 0;
+                }
+                console.log(count) //2
+            body.style.backgroundColor = colors[count]
+        }
     </script>
 </body>
 </html>
