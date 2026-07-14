@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 500px;
+            border: 1px solid;
+            margin: auto;
+            padding: 20px;
+        }
+        input{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="">Name</label>
+        <input  id="name"  type="text" placeholder="enter name">
+
+        <label for="">Email</label>
+        <input id="email" type="email" placeholder="enter email">
+
+        <label for="">Password</label>
+        <input id="password" type="password" placeholder="enter password">
+
+        <div>
+            <label for="">Gender</label>
+            <label for="">Male</label>
+            <input value="male"  id="male" type="radio" name="gender">
+            <label for="">Female</label>
+            <input value="female" id="female"  type="radio" name="gender">
+        </div>
+
+        <select name="" id="course">
+            <option value="">select a Course</option>
+            <option value="fullstack">Fullstack</option>
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+        </select>
+
+        <div>
+            <label for="">Subject :</label>
+            <label for="">HTML</label>
+            <input value="html" id="html" type="checkbox">
+            <label for="">CSS</label>
+            <input value="css" id="css" type="checkbox">
+            <label for="">JS</label>
+            <input value="js" id="js" type="checkbox">
+        </div>
+
+        <button onclick="handleSubmit(event)">Submit</button>
+    </form>
+
+
+    <script>
+
+            let nameInput = document.querySelector('#name')
+            let emailInput = document.querySelector('#email')
+            let passwordInput = document.querySelector('#password')
+            let courseInput = document.querySelector('#course')
+            let maleInput = document.querySelector('#male')
+            let femaleInput = document.querySelector('#female')
+            let htmlInput = document.querySelector('#html')
+            let cssInput = document.querySelector('#css')
+            let jsInput = document.querySelector('#js')
+
+            
+
+            nameInput.focus()
+            
+            function handleSubmit(e){
+                e.preventDefault()
+                console.log(nameInput.value)
+
+                // let x = ''
+
+                // if(maleInput.checked === true){
+                //     x = "male"
+                // }
+                // else if(femaleInput.checked == true){
+                //     x = "female"
+                // }
+                // else{
+                //     x = ""
+                // }
+
+                // Syntax --> 
+                // condition(true or false) ? true output : false output 
+
+                                // false
+                    // let ans = maleInput.checked === true ? "hiii" :femaleInput.checked=== true? "bye bye":"nothing"
+                    // console.log(ans)
+
+
+                    let subject = [];
+
+                    if(htmlInput.checked=== true){
+                            subject.push(htmlInput.value)
+                    }
+                    if(cssInput.checked === true){
+                            subject.push(cssInput.value)
+                    }
+                     if(jsInput.checked === true){
+                            subject.push(jsInput.value)
+                    }
+
+                let obj = {
+                    name:nameInput.value,
+                    email:emailInput.value,
+                    password:passwordInput.value,
+                    course:courseInput.value,
+                    // gender:ans,
+                    gender:maleInput.checked === true ? maleInput.value : femaleInput.checked===true? "female" : "",
+                    // male:maleInput.checked,
+                    // female:femaleInput.checked,
+                    subject:subject
+                    // html:htmlInput.checked,
+                    // css:cssInput.checked,
+                    // js:jsInput.checked,
+                }
+                
+                console.log(obj)
+        }
+    </script>
+</body>
+</html>
