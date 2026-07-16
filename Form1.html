@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 500px;
+            border: 1px solid;
+            margin: auto;
+            padding: 20px;
+        }
+        input{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+     <form action="">
+        <label for="">Name</label>
+        <input  onchange="handleChanger(event)" name="name"  type="text" placeholder="enter name">
+
+        <label for="">Email</label>
+        <input onchange="handleChanger(event)" name="email" type="email" placeholder="enter email">
+
+        <label for="">Password</label>
+        <input onchange="handleChanger(event)" name="password" type="password" placeholder="enter password">
+
+        <div>
+            <label for="">Gender</label>
+            <label for="">Male</label>
+            <input onchange="handleChanger(event)" value="male"  name="gender" type="radio" name="gender">
+            <label for="">Female</label>
+            <input onchange="handleChanger(event)" value="female" name="gender"  type="radio" name="gender">
+        </div>
+
+        <select name="course" id="course" onchange="handleChanger(event)">
+            <option value="">select a Course</option>
+            <option value="fullstack">Fullstack</option>
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+        </select>
+
+        <div>
+            <label for="">Subject :</label>
+            <label for="">HTML</label>
+            <input onchange="handleChanger1(event)" value="html" name="html" type="checkbox">
+            <label for="">CSS</label>
+            <input onchange="handleChanger1(event)" value="css" name="css" type="checkbox">
+            <label for="">JS</label>
+            <input onchange="handleChanger1(event)" value="js" id="js" type="checkbox">
+        </div>
+
+        <button onclick="handleSubmit(event)">Submit</button>
+    </form>
+
+    <script>
+        let obj = {
+            name:"",
+            email:"",
+            password:"",
+            gender:"",
+            course:"",
+            subject:[]
+        }
+
+        let subjects = [];
+
+        function handleChanger(e){
+            // console.log(e)// object -->
+            // console.log(e.target)  // tag    -->  input
+            // console.log(e.target.name)  // tag name attribute  -->  password
+            // console.log(e.target.value)  // tag name attribute  --> 12345
+
+            obj = {...obj, [e.target.name]:e.target.value}  //
+            // console.log(obj)
+        }
+
+        // let arr = ['html', 'css', 'js', 'javascript'];
+
+        // let ans = arr.filter((value)=> value!='css');   //[html, js , javascript]
+
+        // let arr1 = [10 ,20, 13 , 15 , 40 ,60 ,90];
+
+        // let ans1 = arr1.filter((x)=> x%2==0)  // [10, 20 , 40, 60 , 90] 
+
+
+
+
+
+        // console.log(arr.includes('csss'))//
+
+        function handleChanger1(e){
+            // console.log(e.target)  //tag
+            // console.log(e.target.value)  //tag value
+
+
+
+            if(subjects.includes(e.target.value)){
+                // subjects.pull(e.target.value)
+
+                //[js, html, css]
+                let ans = subjects.filter((ele)=> ele!=e.target.value);
+                console.log(ans)
+                subjects = ans
+            }
+            else{
+                subjects.push(e.target.value)
+            }
+            
+            // subjects.push(e.target.value);
+            // console.log(subjects)
+            obj.subject = subjects;
+
+        }
+
+
+        // let obj = {
+        //     name:"one",
+        //     age:34
+        // }
+
+        // let x = "course";
+        // let y= "fullstack";
+
+        // // obj.x = y;   //wrong method for dynamic key
+        // obj[x] = y  // correct way to add dynamic key
+        // obj.email = "abc@gmail.com";
+        // console.log(obj)
+
+        // console.log(obj.email)
+        // console.log(obj['email'])
+
+
+
+        // let obj = {
+        //     name:"one",
+        //     age:44
+        // }
+
+        // // let x = obj  // this is wrong way
+        // let x = {...obj};
+        // x.email = "abc@gmail.com"
+
+        // console.log(x)    
+        // console.log(obj)
+
+        // let arr = [10, 20, 30];
+        // let y = [...arr]
+
+
+        // spread operator   --> ... with the help of spread operator you can copy array or object into new array or object
+
+
+        function handleSubmit(e){
+            e.preventDefault();
+            console.log(obj)
+        }
+    </script>
+</body>
+</html>
