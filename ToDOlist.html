@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            width: 500px;
+            height: 600px;
+            border: 1px solid ;
+            padding: 20px;
+        }
+        input{
+            padding: 10px;
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+        }
+        .top{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: black; */
+            height: 100px;
+            gap: 5px;
+        }
+        button{
+            width: 150px;
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            background-color: tomato;
+        }
+        button:hover{
+            background-color: thistle;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <div class="container">
+        <form class="top">
+            <input id="taskInput" type="text" placeholder="enter a task..">
+            <button onclick="getValue(event)">Add Task</button>
+        </form>
+
+        <div class="bottom">
+    
+        </div>
+    </div>
+
+    <script>
+
+        let inputTag = document.querySelector('#taskInput');
+        let bottomBox = document.querySelector('.bottom');
+        // console.log(inputTag)
+
+        let taskArr = ["sbji lana hai", 'dukan pr jana hai' , 'study krna hai'];
+        console.log(taskArr)
+
+
+        function showData(){
+            bottomBox.innerHTML = "";
+                for(let value of taskArr){
+                    console.log(value)  //"sbji lana hai"
+                    let para = document.createElement('p');   //<p>content <button>delete<button>   <p>
+                    let buttonTag = document.createElement('button')
+
+                    para.innerHTML = value
+                    buttonTag.innerHTML = "delete";
+
+                    para.append(buttonTag)
+                    bottomBox.append(para)
+
+                }
+
+        }
+
+        showData()
+
+        function getValue(e){
+            e.preventDefault();
+            let taskValue = inputTag.value;
+            // console.log(taskValue);
+            taskArr.push(taskValue);
+            console.log(taskArr)
+            showData()
+        }
+
+        // function getValue(e){
+        //     e.preventDefault();
+        //     // console.log("all good")
+        //     let taskValue = inputTag.value;
+        //     // console.log(taskValue);
+
+        //     // create elements
+        //     let p = document.createElement('p');  //<p> hello <button>delete <button>  <p>
+        //     let buttonTag = document.createElement('button'); //<button>  <button>
+
+
+        //     // write inside any element
+        //         buttonTag.innerHTML = "delete"
+        //         p.innerHTML = taskValue;
+        //         console.log(p)
+
+        //     // append elements
+        //         p.append(buttonTag)
+        //         bottomBox.append(p)
+
+        //     // taskArr.push(taskValue);
+        //     // inputTag.value = "";
+        //     // console.log(taskArr)
+            
+
+        // }
+    </script>
+</body>
+</html>
