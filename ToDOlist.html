@@ -46,6 +46,9 @@
         button:hover{
             background-color: thistle;
         }
+        .btnDelete{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -68,16 +71,18 @@
         let bottomBox = document.querySelector('.bottom');
         // console.log(inputTag)
 
-        let taskArr = ["sbji lana hai", 'dukan pr jana hai' , 'study krna hai'];
-        console.log(taskArr)
+        let database = JSON.parse(localStorage.getItem('dataArr'))  || []
+        console.log(database)
 
 
         function showData(){
             bottomBox.innerHTML = "";
-                for(let value of taskArr){
+                for(let value of database){
                     console.log(value)  //"sbji lana hai"
                     let para = document.createElement('p');   //<p>content <button>delete<button>   <p>
                     let buttonTag = document.createElement('button')
+                    buttonTag.className = "btnDelete"
+                    
 
                     para.innerHTML = value
                     buttonTag.innerHTML = "delete";
@@ -93,11 +98,17 @@
 
         function getValue(e){
             e.preventDefault();
-            let taskValue = inputTag.value;
+            let taskValue = inputTag.value;  //
+            if(taskValue.length <=0){
+                return
+            }
             // console.log(taskValue);
-            taskArr.push(taskValue);
-            console.log(taskArr)
+            database.push(taskValue);
+            localStorage.setItem('dataArr',JSON.stringify(database))
+            console.log(database)
             showData()
+            inputTag.value = "";
+
         }
 
         // function getValue(e){
@@ -126,6 +137,45 @@
             
 
         // }
+
+
+        // Save data and get data from localstorage
+        // a) localstorage.setItem('key', value)
+        // b) localstorage.getItem('key')
+
+        // Array , object  -->
+        // let data = {name:"one", age:34} 
+        // let arr = [10, 20, 30]
+
+        // console.log(typeof data)  //Object
+        // console.log(typeof arr)  //Object
+
+        // console.log(Array.isArray(arr))   // true
+        // console.log(Array.isArray(data))   // false
+
+        // we always send data in string form 
+        // JSON.stringify();
+        // JSON.parse();
+
+
+
+
+
+
+
+        // localStorage.setItem('demo', "hello")
+        // localStorage.setItem('demo1', 10)
+
+
+        // localStorage.setItem('demo2', JSON.stringify([10,20,30]))
+        // localStorage.setItem('demo3', JSON.stringify({name:"one",email:"one@gmail.com"}))
+
+
+        // let datArr = JSON.parse(localStorage.getItem("demo2"));
+        // console.log(datArr)
+
+
+        localStorage.removeItem('dataArr')
     </script>
 </body>
 </html>
