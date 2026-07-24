@@ -57,7 +57,7 @@
     <div class="container">
         <form class="top">
             <input id="taskInput" type="text" placeholder="enter a task..">
-            <button onclick="getValue(event)">Add Task</button>
+            <button onclick="getValue(event)" >Add Task</button>
         </form>
 
         <div class="bottom">
@@ -77,22 +77,43 @@
 
         function showData(){
             bottomBox.innerHTML = "";
-                for(let value of database){
+                database.forEach((value , i)=>{
                     console.log(value)  //"sbji lana hai"
                     let para = document.createElement('p');   //<p>content <button>delete<button>   <p>
                     let buttonTag = document.createElement('button')
                     buttonTag.className = "btnDelete"
+
+                    let updateBtn = document.createElement('button')
+                    updateBtn.style.backgroundColor = "yellow"
                     
 
                     para.innerHTML = value
                     buttonTag.innerHTML = "delete";
+                    updateBtn.innerHTML = "incompleted"
 
-                    para.append(buttonTag)
+                    para.append(buttonTag , updateBtn )
                     bottomBox.append(para)
 
-                }
+                    // buttonTag.addEventListener('click', ()=>{
+                    //     console.log(value)
+                    // })
 
-        }
+                    buttonTag.onclick = ()=>{
+                        console.log(value, i) //hello  , bye bye
+                        database.splice(i, 1)
+
+                        console.log(database)
+                        localStorage.setItem('dataArr', JSON.stringify(database))
+                        showData();
+                    }
+                    
+                
+                
+                })
+            }
+
+
+        
 
         showData()
 
@@ -174,8 +195,8 @@
         // let datArr = JSON.parse(localStorage.getItem("demo2"));
         // console.log(datArr)
 
-
-        localStorage.removeItem('dataArr')
+// x
+        // localStorage.removeItem('dataArr')
     </script>
 </body>
 </html>

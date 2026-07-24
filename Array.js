@@ -33,3 +33,36 @@
 
 
 
+// Array methods --> forEach , map method , filter method -->
+
+// forEach -->  traverse through an array -->
+
+// let arr = [ 10, 20, 30, 40, 50]
+
+// arr.forEach((val, i)=>{
+//     console.log(val , i)
+// })
+
+//// map --> 
+// a) traverse or iterate through an array -->
+// b) can return a new array or modified array
+
+// let ans = arr.map((val, i)=>{  // [11, 21]
+//     // console.log(val , i)
+//     return val+1
+// })
+// console.log(ans)
+
+
+// 
+// remove element at 3rd index
+
+// let arr = [ 10, 20, 30, 40, 50]
+
+// arr.splice(3, 1);
+// console.log(arr)
+
+
+
+
+
