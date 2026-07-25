@@ -65,4 +65,18 @@
 
 
 
+let arr = [ 10, 20, 30, 40, 50]
+
+let val =   77
+let i = 3 
+
+arr.splice(i,1,val)  //[10, 20, 30, 77, 50]
+
+// arr[i] = val;
+// console.log(arr)  // [10, 20, 30, 77, 50]
+
+
+
+
+
 

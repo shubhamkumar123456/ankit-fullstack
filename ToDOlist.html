@@ -49,10 +49,16 @@
         .btnDelete{
             background-color: red;
         }
+
+        h1{
+            text-decoration: line-through;
+            /* text-decoration: underline; */
+        }
     </style>
 </head>
 <body>
 
+    <!-- <h1>Lorem ipsum dolor sit amet consectetur adipisicing.</h1> -->
    
     <div class="container">
         <form class="top">
@@ -72,6 +78,13 @@
         // console.log(inputTag)
 
         let database = JSON.parse(localStorage.getItem('dataArr'))  || []
+        // let database = [
+        //     {taskName:"js study" , status:"incompleted" },
+        //     {taskName:"HTML study" , status:"incompleted" },
+        //     {taskName:"CSS study" , status:"completed" },
+            
+        //     // {taskName:"", status:"incompleted"}
+        // ]
         console.log(database)
 
 
@@ -84,12 +97,25 @@
                     buttonTag.className = "btnDelete"
 
                     let updateBtn = document.createElement('button')
-                    updateBtn.style.backgroundColor = "yellow"
+                   
                     
 
-                    para.innerHTML = value
+                    para.innerHTML = value.taskName
+
+                    if(value.status === "completed"){
+                        para.style.textDecoration = "line-through"
+                    }
+                    
                     buttonTag.innerHTML = "delete";
-                    updateBtn.innerHTML = "incompleted"
+                    updateBtn.innerHTML = value.status  //incompleted or completed
+
+                    if(updateBtn.innerHTML ==="completed"){
+                        updateBtn.style.backgroundColor = "green"
+                        updateBtn.style.color = "white"
+                    }
+                    else{
+                         updateBtn.style.backgroundColor = "yellow"
+                    }
 
                     para.append(buttonTag , updateBtn )
                     bottomBox.append(para)
@@ -105,6 +131,26 @@
                         console.log(database)
                         localStorage.setItem('dataArr', JSON.stringify(database))
                         showData();
+                    }
+
+                    updateBtn.onclick=()=>{
+                         console.log(value, i)//{taskName: 'css study', status: 'incompleted'}
+                         let obj = {...value}  
+                         
+                         obj.status = value.status==="completed"? "incompletd" : "completed";
+                         console.log(obj)
+
+                         database[i] = obj;
+                         console.log(database)
+                         localStorage.setItem('dataArr', JSON.stringify(database))
+                        showData();
+
+                        // if(value.status ==="completed"){
+                        //     obj.status = "incompleted"
+                        // }
+                        // else{
+                        //     obj.status= "completed"
+                        // }
                     }
                     
                 
@@ -124,7 +170,7 @@
                 return
             }
             // console.log(taskValue);
-            database.push(taskValue);
+            database.push({taskName:taskValue , status:"incompleted"});
             localStorage.setItem('dataArr',JSON.stringify(database))
             console.log(database)
             showData()
