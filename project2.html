@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 90%;
+        min-height: 100vh;
+        background-color: black;
+        margin: auto;
+        color: white;
+        display: grid;
+        grid-template-columns: repeat(3,auto);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .box {
+        /* background-color: aqua; */
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 20px;
+        padding: 20px;
+        border: 1px solid orange;
+        border-radius: 20px;
+      }
+
+      .box button{
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .box img{
+        /* max-height: 300px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+     
+    </div>
+
+    <h1 id="demo"></h1>
+    <script>
+      let obj = {
+        name: "one",
+        age: 34,
+      };
+      console.log(obj);
+
+      // Object --> JSON.stingify , JSON.Parse -->
+      // let res =  fetch('https://dummyjson.com/products') //async task
+      // res.then((ans)=>ans.json()).then((ans)=>console.log(ans.products)).then(()=>console.log("hello"))
+      // .catch((ans)=>console.log(ans))
+
+      let containerTag = document.querySelector(".container");
+
+      let h1 = document.querySelector("#demo");
+      // h1.innerHTML = "<p>hello <p>"
+      // h1.innerText = "<p>hello <p>"
+      console.log(h1);
+
+      async function getData() {
+        let res = await fetch("https://dummyjson.com/products");
+        let data = await res.json(); //parse the Data
+        // console.log(data);  // {products:[], limit:0, skip:0}
+        // console.log(data.products)  // [{} , {} , {} , {} , ...30]
+
+        data.products.forEach((val, i) => {
+          // console.log(val)
+          // console.log(val.title)
+
+          containerTag.innerHTML = containerTag.innerHTML +
+            ` <div class="box">
+                <img src=${val.thumbnail} alt="">
+
+            <h3>${val.title}</h3>
+            <p>${val.price} </p>
+            <button>Add to Cart</button>
+        </div> `;
+        });
+      }
+
+      getData();
+    </script>
+  </body>
+</html>
