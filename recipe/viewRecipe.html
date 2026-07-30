@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .top{
+            display: flex;
+            gap: 30px;
+        }
+        img{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <img id="image" src="" alt="">
+        <div class="right">
+            
+        </div>
+    </div>
+
+    <h3>Incredients</h3>
+    <ul class="ingredientList">
+
+    </ul>
+
+    <h3>Instructions</h3>
+    <ul class="instructiontList">
+
+    </ul>
+
+
+    <script>
+        let imagetag = document.getElementById('image')
+        let myRecipe = JSON.parse(localStorage.getItem('xyz'))
+        let righttag = document.querySelector('.right');
+
+
+        console.log(myRecipe) // {}
+        console.log(myRecipe.ingredients)
+
+        imagetag.src = myRecipe.image
+
+        // create tags --> 
+        let h3Tag = document.createElement('h3');
+        let cuisneTag = document.createElement('h3'); //<h3>  <h3>
+
+        myRecipe.ingredients.forEach((val , i)=>{
+            let liTag = document.createElement('li');
+            liTag.innerHTML = val
+            document.querySelector('.ingredientList').append(liTag)
+        })
+
+        myRecipe.instructions.forEach((val , i)=>{
+            let liTag = document.createElement('li');
+            liTag.innerHTML = val
+            document.querySelector('.instructiontList').append(liTag)
+        })
+
+
+        // write inside tags
+        h3Tag.innerHTML = `Title :${myRecipe.name}`
+        cuisneTag.innerHTML = `Cuisine :${myRecipe.cuisine}`
+
+
+        // append tags
+
+        righttag.append(h3Tag,cuisneTag)
+
+
+        
+
+    </script>
+</body>
+</html>

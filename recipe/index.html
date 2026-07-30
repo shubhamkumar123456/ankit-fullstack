@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+
+        height: max-content;
+        width: 80%;
+        margin:20px auto;
+
+        /* background-color: aqua; */
+        display: grid;
+        grid-template-columns: repeat(4,auto);
+        gap: 40px;
+        background-color: white;
+    }
+
+    .push{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: black;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+    }
+
+    .push img{
+        width: 100%;
+    }
+    
+    button{
+        background-color: rgb(62, 194, 62);
+        padding: 10px;
+    }
+
+
+</style>
+<body>
+    <div class="container"></div>
+    
+    <script>
+
+        let loadTg = document.querySelector(".container");
+        // console.log(loadTg)
+
+       async function loadata(){
+            // console.log(loadata)
+           let DT = await fetch("https://dummyjson.com/recipes");
+           let PR = await DT.json();
+        // console.log(PR   )
+           console.log(PR.recipes)
+  
+           PR.recipes.forEach((val , i) => {
+            // console.log(val.name)   
+            // console.log(val.name , i)
+
+            let divTag = document.createElement('div')
+            let imageTag = document.createElement('img');
+            let buttonTag = document.createElement('button');
+            let para = document.createElement('p')
+
+            imageTag.src = val.image;
+            para.innerHTML = val.name
+            buttonTag.innerHTML = "View Recipe";
+
+            divTag.className = "push"
+
+            divTag.append(imageTag, para, buttonTag)
+            loadTg.append(divTag)
+            
+
+            buttonTag.onclick = ()=>{
+                console.log(i)
+                console.log(val)
+                localStorage.setItem('xyz', JSON.stringify(val))
+                window.location = "viewRecipe.html"
+            }
+           });
+        //    loadTg.innerHTML = loadTg.innerHTML +
+
+        
+         
+       
+        }
+        loadata()
+
+       
+
+        // console.log("this is ankit testing...")
+
+       
+</script>
+</body>
+</html>
