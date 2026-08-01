@@ -6,42 +6,153 @@
     <title>Document</title>
 </head>
 <style>
-    .container{
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-        height: max-content;
-        width: 80%;
-        margin:20px auto;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        /* background-color: aqua; */
-        display: grid;
-        grid-template-columns: repeat(4,auto);
-        gap: 40px;
-        background-color: white;
+body{
+    background:#f5f7fb;
+}
+
+header{
+    background:linear-gradient(135deg,#ff6b6b,#ff9f43);
+    color:white;
+    text-align:center;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+header h1{
+    font-size:35px;
+}
+
+header p{
+    margin-top:8px;
+    font-size:17px;
+}
+
+.container{
+    width:90%;
+    max-width:1400px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:30px;
+}
+
+.push{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    transition:.35s;
+}
+
+.push:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.push img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.content{
+    padding:18px;
+}
+
+.content h2{
+    font-size:20px;
+    color:#333;
+    margin-bottom:12px;
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+    font-size:14px;
+    color:#666;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#00c853,#64dd17);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+    background:linear-gradient(135deg,#00b248,#43a047);
+}
+
+.top{
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.top input{
+    width: 80%;
+    padding: 0 20px;
+    border-radius: 10px;
+    /* outline: none; */
+    border: none;
+    border: 1px solid gray;
+    outline-color: #00b248;
+}
+
+.top #submit{
+    width: 200px;
+}
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:28px;
     }
 
-    .push{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        background: black;
-        padding: 10px;
-        border-radius: 10px;
-        color: white;
+    header p{
+        font-size:15px;
     }
 
     .push img{
-        width: 100%;
-    }
-    
-    button{
-        background-color: rgb(62, 194, 62);
-        padding: 10px;
+        height:200px;
     }
 
-
+}
 </style>
 <body>
-    <div class="container"></div>
+    <header>
+    <h1>🍽️ Delicious Recipes</h1>
+    <p>Explore Recipes From Around The World</p>
+</header>
+
+<div class="top">
+    <input id="searchItem" type="text" placeholder="search dishesh..">
+    <button onclick="handleSubmit()" id="submit">Submit</button>
+</div>    
+
+<div class="container">
+
+</div>
     
     <script>
 
@@ -59,41 +170,55 @@
             // console.log(val.name)   
             // console.log(val.name , i)
 
-            let divTag = document.createElement('div')
-            let imageTag = document.createElement('img');
-            let buttonTag = document.createElement('button');
-            let para = document.createElement('p')
+            loadTg.innerHTML = loadTg.innerHTML + `<div class="push">
+                    <img src = "${val.image}"/>
+                    <p>${val.name} </p>
+                    <button onclick='handleRecipe(${JSON.stringify(val)})''> View Recipe </button>
+                </div>`
 
-            imageTag.src = val.image;
-            para.innerHTML = val.name
-            buttonTag.innerHTML = "View Recipe";
-
-            divTag.className = "push"
-
-            divTag.append(imageTag, para, buttonTag)
-            loadTg.append(divTag)
             
-
-            buttonTag.onclick = ()=>{
-                console.log(i)
-                console.log(val)
-                localStorage.setItem('xyz', JSON.stringify(val))
-                window.location = "viewRecipe.html"
-            }
            });
-        //    loadTg.innerHTML = loadTg.innerHTML +
-
-        
-         
-       
+     
         }
         loadata()
+
+        function handleRecipe( val){
+                // console.log( i)
+                console.log( val)
+                localStorage.setItem('xyz',JSON.stringify(val))
+                window.location = "viewRecipe.html"
+            }
 
        
 
         // console.log("this is ankit testing...")
 
        
+
+       let searchItemTag = document.querySelector('#searchItem');
+       console.log(searchItemTag)
+
+
+      async function handleSubmit(){
+            // console.log("hello")
+            // console.log(searchItemTag.value)
+            let val = searchItemTag.value //lassi
+
+            let res = await fetch(`https://dummyjson.com/recipes/search?q=${val}`);
+            let data = await res.json();
+            console.log(data)
+
+            loadTg.innerHTML = "";
+              data.recipes.forEach((val , i) => {
+            loadTg.innerHTML = loadTg.innerHTML + `<div class="push">
+                    <img src = "${val.image}"/>
+                    <p>${val.name} </p>
+                    <button onclick='handleRecipe(${JSON.stringify(val)})''> View Recipe </button>
+                </div>`
+
+            
+           });
+       }
 </script>
 </body>
 </html>

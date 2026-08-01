@@ -1,78 +1,225 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recipe Details</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        .top{
-            display: flex;
-            gap: 30px;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins, sans-serif;
+      }
+
+      body {
+        background: #f4f7fb;
+      }
+
+      header {
+        background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+        color: white;
+        text-align: center;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      header h1 {
+        font-size: 35px;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1300px;
+        margin: 40px auto;
+      }
+
+      .top {
+        display: flex;
+        gap: 40px;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        margin-bottom: 35px;
+      }
+
+      .top img {
+        width: 420px;
+        object-fit: cover;
+      }
+
+      .right {
+        padding: 35px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .right h2 {
+        font-size: 34px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .info span {
+        background: #f2f2f2;
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-weight: 600;
+      }
+
+      .section {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .section h2 {
+        color: #ff6b6b;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 12px;
+        line-height: 1.8;
+      }
+
+      button {
+        margin-top: 25px;
+        width: 180px;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #ff6b6b, #ff9f43);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+      }
+
+      @media (max-width: 900px) {
+        .top {
+          flex-direction: column;
         }
-        img{
-            width: 300px;
+
+        .top img {
+          width: 100%;
+          height: 300px;
         }
+
+        .right h2 {
+          font-size: 28px;
+        }
+      }
     </style>
-</head>
-<body>
-    <div class="top">
-        <img id="image" src="" alt="">
-        <div class="right">
-            
-        </div>
+  </head>
+
+  <body>
+    <header>
+      <h1>🍽 Recipe Details</h1>
+    </header>
+
+    <div class="container">
+      <div class="top">
+        <img id="image" />
+
+        <div class="right"></div>
+      </div>
+
+      <div class="section">
+        <h2>🥗 Ingredients</h2>
+
+        <ul class="ingredientList"></ul>
+      </div>
+
+      <div class="section">
+        <h2>👨‍🍳 Cooking Instructions</h2>
+
+        <ul class="instructiontList"></ul>
+      </div>
     </div>
 
-    <h3>Incredients</h3>
-    <ul class="ingredientList">
-
-    </ul>
-
-    <h3>Instructions</h3>
-    <ul class="instructiontList">
-
-    </ul>
-
-
     <script>
-        let imagetag = document.getElementById('image')
-        let myRecipe = JSON.parse(localStorage.getItem('xyz'))
-        let righttag = document.querySelector('.right');
+      let imagetag = document.getElementById("image");
 
+      let myRecipe = JSON.parse(localStorage.getItem("xyz"));
+      console.log(myRecipe)
 
-        console.log(myRecipe) // {}
-        console.log(myRecipe.ingredients)
+      let righttag = document.querySelector(".right");
 
-        imagetag.src = myRecipe.image
+      imagetag.src = myRecipe.image;
 
-        // create tags --> 
-        let h3Tag = document.createElement('h3');
-        let cuisneTag = document.createElement('h3'); //<h3>  <h3>
+      righttag.innerHTML = `
 
-        myRecipe.ingredients.forEach((val , i)=>{
-            let liTag = document.createElement('li');
-            liTag.innerHTML = val
-            document.querySelector('.ingredientList').append(liTag)
-        })
+<h2>${myRecipe.name}</h2>
 
-        myRecipe.instructions.forEach((val , i)=>{
-            let liTag = document.createElement('li');
-            liTag.innerHTML = val
-            document.querySelector('.instructiontList').append(liTag)
-        })
+<div class="info">
 
+<span>⭐ ${myRecipe.rating}</span>
 
-        // write inside tags
-        h3Tag.innerHTML = `Title :${myRecipe.name}`
-        cuisneTag.innerHTML = `Cuisine :${myRecipe.cuisine}`
+<span>🍽 ${myRecipe.cuisine}</span>
 
+<span>⏱ ${myRecipe.prepTimeMinutes} mins</span>
 
-        // append tags
+<span>🔥 ${myRecipe.caloriesPerServing} Cal</span>
 
-        righttag.append(h3Tag,cuisneTag)
+<span>👥 ${myRecipe.servings} Servings</span>
 
+<span>🥘 ${myRecipe.difficulty}</span>
 
-        
+</div>
 
+<p style="font-size:17px;color:#666;line-height:1.8;">
+Enjoy this delicious <b>${myRecipe.cuisine}</b> recipe.
+Perfect for family dinners and special occasions.
+</p>
+
+<button onclick="history.back()">
+⬅ Back
+</button>
+
+`;
+
+      myRecipe.ingredients.forEach((item) => {
+        document.querySelector(".ingredientList").innerHTML += `
+<li>${item}</li>
+`;
+      });
+
+      myRecipe.instructions.forEach((item) => {
+        document.querySelector(".instructiontList").innerHTML += `
+<li>${item}</li>
+`;
+      });
     </script>
-</body>
+  </body>
 </html>
